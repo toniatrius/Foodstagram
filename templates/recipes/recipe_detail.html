@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h2>{{ object.name }}</h2>
+      <p><strong>Description:</strong> {{ object.description }}</p>
+      <p><strong>Instructions:</strong> {{ object.instructions }}</p>
+      <p><strong>Category:</strong> {{ object.category }}</p>
+      <p><strong>Ingredients:</strong></p>
+      <ul>
+        {% for ingredient in object.ingredients.all %}
+        <li>{{ ingredient.name }}</li>
+        {% endfor %}
+      </ul>
+      {% if object.photo %}
+      <img src="{{ object.photo.url }}" alt="{{ object.name }}" class="img-fluid">
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

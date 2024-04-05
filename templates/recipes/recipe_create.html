@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <h2>Create Recipe</h2>
+  <form method="post" enctype="multipart/form-data">
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Save</button>
+    {% csrf_token %}  
+  </form>
+</div>
+{% endblock %}

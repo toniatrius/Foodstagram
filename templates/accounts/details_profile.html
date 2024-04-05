@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+  <h2>User Profile</h2>
+  <div>
+    <p>Email: {{ user.email }}</p>
+    <p>Date Joined: {{ user.date_joined }}</p>
+    <p>First Name: {{ user.profile.first_name }}</p>
+    <p>Last Name: {{ user.profile.last_name }}</p>
+    <p>Date of Birth: {{ user.profile.date_of_birth }}</p>
+    <p>Profile Picture: <img src="{{ user.profile.profile_picture }}" alt="Profile Picture"></p>
+  </div>
+
+  <div>
+    <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+    <a href="{% url 'delete_profile' %}" class="btn btn-danger">Delete Profile</a>
+  </div>
+{% endblock %}

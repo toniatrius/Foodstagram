@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodStagram</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/free-30-instagram-stories-icons23_122570.png' %}">
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="{% url 'common:index' %}">Home</a></li> <!-- Link to RecipeListView -->
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'recipe-create' %}">Add Recipe</a></li>
+            <li><a href="{% url 'recipe-list' user.pk %}">Recipes</a></li> <!-- Link to all recipes -->
+            <li><a href="{% url 'profile' user.pk %}">Profile</a></li>
+            <li><a href="{% url 'signout' %}">Logout</a></li>
+        {% else %}
+            <li><a href="{% url 'signin' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer>
+    <p>&copy; 2024 FoodStagram</p>
+</footer>
+
+</body>
+</html>

@@ -6,9 +6,9 @@ class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
         fields = ['name', 'description', 'instructions', 'photo', 'category', 'ingredients']
-
-    def clean_ingredients(self):
-        ingredients = self.cleaned_data['ingredients']
-        if len(set(ingredients)) != len(ingredients):
-            raise forms.ValidationError("Ingredients must be unique.")
-        return ingredients
+        labels = {
+            'ingredients': 'Ingredients (separated by commas)'
+        }
+        help_texts = {
+            'ingredients': 'Enter ingredients separated by commas, e.g., ingredient1, ingredient2, ingredient3'
+        }

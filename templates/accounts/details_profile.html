@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
     
@@ -13,7 +14,7 @@
   </div>
 
   <div>
-    <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
-    <a href="{% url 'delete_profile' %}" class="btn btn-danger">Delete Profile</a>
+    <a href="{% url 'profile-update' pk=user.pk %}" class="btn btn-primary">Edit Profile</a>
+    <a href="{% url 'profile-delete' pk=user.pk %}" class="btn btn-danger">Delete Profile</a>
   </div>
 {% endblock %}

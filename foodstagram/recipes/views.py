@@ -1,16 +1,24 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
+from django.http import Http404
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView, ListView
-
+from django.views.generic.detail import SingleObjectMixin
 from foodstagram.recipes.forms import RecipeForm
 from foodstagram.recipes.models import Recipe
 
 
-class OwnerRequiredMixin(AccessMixin):
-    """Verify that the current user has this profile."""
+class OwnerRequiredMixin(View):
+    """Verify that the current user is the author of the recipe."""
     def dispatch(self, request, *args, **kwargs):
-        if request.user.pk != kwargs.get('pk', None):
-            return self.handle_no_permission()
+        # Get the recipe object
+        recipe = Recipe.objects.get(pk=kwargs.get('pk'))
+
+        # Check if the logged-in user is the author of the recipe
+        if request.user != recipe.author:
+            raise Http404("You are not the owner of this recipe.")
+
+        # If the user is the author, proceed with the view
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -33,6 +41,12 @@ class RecipeDetailView(DetailView):
     model = Recipe
     template_name = 'recipes/recipe_detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        ingredients = self.object.ingredients.split(', ')
+        context['ingredients'] = ingredients
+        return context
+
 
 class RecipeCreateView(LoginRequiredMixin, CreateView):
     model = Recipe
@@ -44,7 +58,7 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('common:index')  # Assuming 'home' is the name of your home page URL pattern
+        return reverse_lazy('common:index')
 
 
 class RecipeUpdateView(LoginRequiredMixin, OwnerRequiredMixin, UpdateView):
@@ -58,5 +72,5 @@ class RecipeUpdateView(LoginRequiredMixin, OwnerRequiredMixin, UpdateView):
 
 class RecipeDeleteView(LoginRequiredMixin, OwnerRequiredMixin, DeleteView):
     model = Recipe
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('common:index')
     template_name = 'recipes/recipe_delete.html'

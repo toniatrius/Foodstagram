@@ -52,9 +52,10 @@ class Profile(models.Model):
         null=True,
     )
 
-    profile_picture = models.URLField(
-        blank=True,
+    profile_picture = models.ImageField(
+        upload_to='profile_pictures/',
         null=True,
+        blank=True,
     )
 
     user = models.OneToOneField(

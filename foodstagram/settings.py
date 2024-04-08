@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     "foodstagram.recipes",
     "foodstagram.accounts",
     "foodstagram.common",
@@ -138,8 +139,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.FoodstagramUser'
 
 
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'common:index'
 
-LOGIN_URL = 'signin user'
+LOGIN_URL = 'signin'
 
-LOGOUT_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'common:index'

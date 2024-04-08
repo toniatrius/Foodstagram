@@ -5,19 +5,13 @@ from django.db import models
 UserModel = get_user_model()
 
 
-class Ingredient(models.Model):
-    name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name
-
-
 class Recipe(models.Model):
     MAX_LEN_NAME = 255
     MIN_LEN_NAME = 2
     MAX_LEN_DESCRIPTION = 1000
     MAX_LEN_INSTRUCTIONS = 2000
     MAX_LEN_CATEGORY = 100
+    MAX_LEN_INGREDIENT = 200
 
     name = models.CharField(
         max_length=MAX_LEN_NAME,
@@ -42,10 +36,9 @@ class Recipe(models.Model):
     )
 
     photo = models.ImageField(
-        upload_to='recipes/',
-        blank=False,
+        upload_to='recipe_photos/',
+        blank=True,
         null=True,
-        verbose_name='Photo',
     )
 
     category = models.CharField(
@@ -59,9 +52,16 @@ class Recipe(models.Model):
 
     updated_at = models.DateTimeField(auto_now=True)
 
-    ingredients = models.ManyToManyField(
-        Ingredient,
-        verbose_name='Ingredients',
+    ingredients = models.TextField(
+        max_length=MAX_LEN_INGREDIENT,
+        blank=False,
+        null=True,
+    )
+
+    likes = models.ManyToManyField(
+        get_user_model(),
+        related_name='liked_recipes',
+        blank=True
     )
 
     author = models.ForeignKey(

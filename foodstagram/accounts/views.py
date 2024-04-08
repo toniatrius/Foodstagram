@@ -25,7 +25,7 @@ class SignInUserView(auth_views.LoginView):
 class SignUpUserView(views.CreateView):
     template_name = "accounts/sign_up.html"
     form_class = FoodstagramUserCreationForm
-    success_url = reverse_lazy("index")
+    success_url = reverse_lazy('common:index')
 
     def form_valid(self, form):
         result = super().form_valid(form)
@@ -35,7 +35,7 @@ class SignUpUserView(views.CreateView):
 
 def signout_user(request):
     logout(request)
-    return redirect('index')
+    return redirect('common:index')
 
 
 class ProfileDetailsView(LoginRequiredMixin, OwnerRequiredMixin, views.DetailView):
@@ -49,7 +49,7 @@ class ProfileUpdateView(LoginRequiredMixin, OwnerRequiredMixin, views.UpdateView
     fields = ("first_name", "last_name", "date_of_birth", "profile_picture")
 
     def get_success_url(self):
-        return reverse("details profile", kwargs={"pk": self.object.pk})
+        return reverse("profile", kwargs={"pk": self.object.pk})
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)

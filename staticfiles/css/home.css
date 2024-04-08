@@ -1,0 +1,89 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.input-group-append button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.input-group-append button:hover {
+    background-color: #2980b9;
+}
+
+.card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card h5 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    margin-bottom: 10px;
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* Custom CSS styles for like button */
+.btn-like {
+    background-color: transparent;
+    border: none;
+    color: #007bff; /* Default color for unliked button */
+}
+
+.btn-like.liked {
+    color: red; /* Color for liked button */
+}
+
+/* Custom CSS styles for like count */
+.like-count {
+    margin-left: 5px; /* Adjust margin for spacing */
+    color: #007bff; /* Color for like count */
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination a,
+.pagination span {
+    color: #333;
+    padding: 10px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.pagination a:hover {
+    background-color: #f2f2f2;
+}
+
+.pagination .page-link {
+    cursor: pointer;
+}

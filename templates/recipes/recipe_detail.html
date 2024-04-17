@@ -1,29 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-  <div class="card">
-    <div class="card-body">
-      <h2>{{ object.name }}</h2>
-      <p><strong>Description:</strong> {{ object.description }}</p>
-      <p><strong>Instructions:</strong> {{ object.instructions }}</p>
-      <p><strong>Category:</strong> {{ object.category }}</p>
-      <p><strong>Ingredients:</strong></p>
-       <ul>
-        {% for ingredient in ingredients %}
-          <li>{{ ingredient }}</li>
-        {% endfor %}
-      </ul>
-      {% if object.photo %}
-      <img src="{{ object.photo.url }}" alt="{{ object.name }}" class="img-fluid">
-      {% endif %}
-    
-      {% if request.user.is_authenticated and object.author == request.user %}
-        <a href="{% url 'recipe-update' pk=object.pk %}" class="btn btn-primary">Edit</a>
-        <a href="{% url 'recipe-delete' pk=object.pk %}" class="btn btn-danger">Delete</a>
-      {% endif %}
-      
+    <div class="details-custom-details-recipe-container">
+        <div class="details-recipe-card">
+            <div class="details-recipe-card-body">
+                <h2>{{ object.name }}</h2>
+                <p><strong>Description:</strong> {{ object.description }}</p>
+                <p><strong>Instructions:</strong> {{ object.instructions }}</p>
+                <p><strong>Category:</strong> {{ object.category }}</p>
+                <p><strong>Ingredients:</strong></p>
+                <ul>
+                    {% for ingredient in ingredients %}
+                        <li>{{ ingredient }}</li>
+                    {% endfor %}
+                </ul>
+                {% if object.photo %}
+                    <img src="{{ object.photo.url }}" alt="{{ object.name }}" class="details-recipe-img-fluid">
+                {% endif %}
+            </div>
+            {% if request.user.is_authenticated and object.author == request.user %}
+                <div class="details-custom-details-recipe-btn-group">
+                    <a href="{% url 'recipe-update' pk=object.pk %}" class="details-custom-details-recipe-btn details-custom-details-recipe-btn-primary">Edit</a>
+                    <a href="{% url 'recipe-delete' pk=object.pk %}" class="details-custom-details-recipe-btn details-custom-details-recipe-btn-danger">Delete</a>
+                </div>
+            {% endif %}
+        </div>
     </div>
-  </div>
-</div>
 {% endblock %}

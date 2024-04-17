@@ -1,9 +1,8 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView, ListView
-from django.views.generic.detail import SingleObjectMixin
 from foodstagram.recipes.forms import RecipeForm
 from foodstagram.recipes.models import Recipe
 
@@ -74,3 +73,16 @@ class RecipeDeleteView(LoginRequiredMixin, OwnerRequiredMixin, DeleteView):
     model = Recipe
     success_url = reverse_lazy('common:index')
     template_name = 'recipes/recipe_delete.html'
+
+
+class LikedRecipeListView(LoginRequiredMixin, ListView):
+    model = Recipe
+    template_name = 'recipes/recipes_liked.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        # Get the current user
+        current_user = self.request.user
+        # Filter recipes by the current user's liked recipes
+        queryset = Recipe.objects.filter(likes=current_user)
+        return queryset

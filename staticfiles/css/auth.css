@@ -1,30 +1,190 @@
-body {
-    background-color: #f2f2f2;
-    font-family: Arial, sans-serif;
+/*sign_up*/
+
+.outer-container.auth-sign-up-outer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 3em;
 }
 
-form {
-    margin-top: 20px;
+.auth-sign-up-container {
+    padding: 1em;
+    border-radius: 4em;
+    margin: auto;
+    min-height: 30em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 70em;
+    width: 65%;
+    background-color: #ffe5e5;
+    flex-direction: column;
+    text-align: left;
 }
 
-button {
-    background-color: #3498db;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
+.auth-sign-up-title {
+    font-size: 2.5em;
+    color: #333;
+    margin: 0.5em 0;
+    word-wrap: break-word;
 }
 
-button:hover {
-    background-color: #2980b9;
-}
-
-input[type="text"],
-input[type="password"] {
+.auth-sign-up-form {
     width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 2em;
+    margin-left: 2em;
 }
+
+.auth-sign-up-form p {
+    font-size: 1.2em;
+    color: #12330c;
+    margin: 0.5em 0;
+    word-wrap: break-word;
+}
+
+.auth-sign-up-form li {
+    font-size: 1.3em;
+    color: #12330c;
+    margin: 0.5em 0;
+    word-wrap: break-word;
+}
+
+.auth-sign-up-form label {
+    font-size: 1.5em;
+    color: #12330c;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 0.5em 0.5em;
+    word-wrap: break-word;
+}
+
+.auth-sign-up-form input {
+    font-size: 1.2em;
+    width: 90%;
+    padding: 0.5em;
+    margin: 0.5em 0;
+}
+
+.sign-up-auth-btn {
+    color: #ffffff;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 1vw;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vw;
+    width: 15vw;
+    padding: 0.3vw 0.6vw;
+    background-color: #495e53;
+}
+
+.sign-up-auth-btn:hover {
+    background-color: #56d3a2;
+}
+
+#id_password2_helptext {
+    display: block;
+    margin-top: 0.5em;
+    font-size: 1.3em;
+    color: #12330c;
+}
+
+/*login*/
+
+.outer-container.auth-login-outer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.auth-login-container {
+    padding: 1em;
+    border-radius: 4em;
+    margin: auto;
+    min-height: 30em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 40em;
+    width: 65%;
+    background-color: #ffe5e5;
+    flex-direction: column;
+    text-align: left;
+}
+
+.auth-login-title {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 1em;
+    word-wrap: break-word;
+}
+
+.auth-login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 2em;
+}
+
+.auth-login-form p {
+    font-size: 1.2em;
+    color: #12330c;
+    margin: 0.5em 0;
+    word-wrap: break-word;
+}
+
+.auth-login-form label {
+    font-size: 1.5em;
+    color: #12330c;
+    text-transform: uppercase;
+    font-weight: bold;
+    word-wrap: break-word;
+}
+
+.auth-login-form input {
+    font-size: 1.2em;
+    width: 90%;
+    padding: 0.5em;
+    margin: 0.5em 0;
+}
+
+.login-auth-btn {
+    color: #ffffff;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.3em;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 1em 0;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.5em;
+    padding: 0.5em 1em;
+    background-color: #495e53;
+    width: 10em;
+}
+
+.login-auth-btn:hover {
+    background-color: #56d3a2;
+}
+
+#id_password2_helptext {
+    display: block;
+    margin-top: 0.5em;
+    font-size: 1.3em;
+    color: #12330c;
+}
+

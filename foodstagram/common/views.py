@@ -1,7 +1,7 @@
-from django.shortcuts import redirect
-from django.views.generic import ListView, TemplateView
+from django.db.models import Q
+from django.shortcuts import redirect, render
+from django.views.generic import ListView
 
-from .models import RecipeLike
 from ..recipes.models import Recipe
 
 
@@ -18,21 +18,10 @@ def like_recipe(request, pk):
         else:
             recipe.likes.add(user)
 
-        # Redirect back to the same page after the like/unlike action
         return redirect(request.META.get('HTTP_REFERER'))
+
     else:
-        # Handle unauthenticated user case
         return JsonResponse({'error': 'User not authenticated'}, status=401)
-
-
-
-# def like_recipe(request, pk):
-#     recipe_like, created = RecipeLike.objects.get_or_create(user=request.user, recipe_id=pk)
-#
-#     if not created:
-#         recipe_like.delete()
-#
-#     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 class IndexView(ListView):
@@ -43,20 +32,14 @@ class IndexView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset().order_by('-created_at')
 
-        title = self.request.GET.get('title')
-        category = self.request.GET.get('category')
-        ingredients = self.request.GET.get('ingredients')
+        search_query = self.request.GET.get('q')
 
-        if title:
-            queryset = queryset.filter(title__icontains=title)
-        if category:
-            queryset = queryset.filter(category__icontains=category)
-        if ingredients:
-            # Split the ingredients string by comma and space
-            ingredients_list = ingredients.split(', ')
-            # Filter queryset based on each ingredient
-            for ingredient in ingredients_list:
-                queryset = queryset.filter(ingredients__icontains=ingredient)
+        if search_query:
+            queryset = queryset.filter(
+                Q(name__icontains=search_query) |
+                Q(category__icontains=search_query) |
+                Q(ingredients__icontains=search_query)
+            )
 
         return queryset
 
@@ -77,5 +60,5 @@ class IndexView(ListView):
         return context
 
 
-class Custom404View(TemplateView):
-    template_name = '404.html'
+def error_404_view(request, exception):
+    return render(request, '404.html', {})

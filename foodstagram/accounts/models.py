@@ -34,6 +34,7 @@ class FoodstagramUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin
 class Profile(models.Model):
     MAX_FIRST_NAME_LENGTH = 30
     MAX_LAST_NAME_LENGTH = 30
+    MAX_IMG_URL_LENGTH = 200
 
     first_name = models.CharField(
         max_length=MAX_FIRST_NAME_LENGTH,
@@ -56,6 +57,7 @@ class Profile(models.Model):
         upload_to='profile_pictures/',
         null=True,
         blank=True,
+        max_length=MAX_IMG_URL_LENGTH
     )
 
     user = models.OneToOneField(

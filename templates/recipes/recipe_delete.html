@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-  <h2>Delete Recipe</h2>
-  <p>Are you sure you want to delete the recipe "{{ object.name }}"?</p>
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Delete</button>
-    <a href="{% url 'recipe-detail' pk=recipe.pk %}" class="btn btn-secondary">Cancel</a>
-  </form>
-</div>
+    <div class="outer-delete-container">
+        <div class="inner-delete-container">
+            <h2 class="recipe-delete-title">Delete Recipe</h2>
+            <p class="recipe-delete-message">Are you sure you want to delete the recipe "{{ object.name }}"?</p>
+            <form method="post" class="recipe-delete-form">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-delete">Delete</button>
+                <a href="{% url 'recipe-detail' pk=recipe.pk %}" class="btn btn-cancel">Cancel</a>
+            </form>
+        </div>
+    </div>
 {% endblock %}

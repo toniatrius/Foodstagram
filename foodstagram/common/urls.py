@@ -1,7 +1,5 @@
 from django.urls import path
-from foodstagram.common.views import like_recipe, IndexView, Custom404View
-
-handler404 = Custom404View.as_view()
+from foodstagram.common.views import like_recipe, IndexView
 
 app_name = 'common'
 

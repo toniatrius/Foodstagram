@@ -10,5 +10,7 @@ urlpatterns = [
     path("recipes/", include("foodstagram.recipes.urls")),
 ]
 
+handler404 = "foodstagram.common.views.error_404_view"
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -2,19 +2,33 @@
 {% load static %}
 
 {% block content %}
-    
-  <h2>User Profile</h2>
-  <div>
-    <p>Email: {{ user.email }}</p>
-    <p>Date Joined: {{ user.date_joined }}</p>
-    <p>First Name: {{ user.profile.first_name }}</p>
-    <p>Last Name: {{ user.profile.last_name }}</p>
-    <p>Date of Birth: {{ user.profile.date_of_birth }}</p>
-    <p>Profile Picture: <img src="{{ user.profile.profile_picture }}" alt="Profile Picture"></p>
-  </div>
+    <div class="container">
+        <div class="profile-container">
+            <div class="profile-card">
+                <div class="profile-card-body">
+                    <h2 class="profile-heading">{{ user.username }} Profile</h2>
+                    <div class="profile-data-container">
+                        <div class="profile-info">
+                            <p class="profile-field"><strong>Email:</strong> {{ user.email }}</p>
+                            <p class="profile-field"><strong>Date Joined:</strong> {{ user.date_joined }}</p>
+                            <p class="profile-field"><strong>First Name:</strong> {{ user.profile.first_name }}</p>
+                            <p class="profile-field"><strong>Last Name:</strong> {{ user.profile.last_name }}</p>
+                            <p class="profile-field"><strong>Date of Birth:</strong> {{ user.profile.date_of_birth }}</p>
+                            <div class="profile-picture-container">
+                                <p class="profile-picture-label"><strong>Profile Picture:</strong></p>
+                                {% if user.profile.profile_picture %}
+                                    <img src="{{ user.profile.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
+                                {% endif %}
+                            </div>
+                        </div>
 
-  <div>
-    <a href="{% url 'profile-update' pk=user.pk %}" class="btn btn-primary">Edit Profile</a>
-    <a href="{% url 'profile-delete' pk=user.pk %}" class="btn btn-danger">Delete Profile</a>
-  </div>
+                        <div class="profile-buttons">
+                            <a href="{% url 'profile-update' pk=user.pk %}" class="btn btn-primary profile-edit-btn">Edit Profile</a>
+                            <a href="{% url 'profile-delete' pk=user.pk %}" class="btn btn-danger profile-delete-btn">Delete Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

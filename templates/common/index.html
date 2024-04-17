@@ -2,40 +2,40 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
+<div class="home-container">
     <!-- Search bar form -->
-    <form method="GET" class="mb-4">
+    <form method="GET" class="home-search-form mb-4">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search recipes..." name="q">
+            <input type="text" class="form-control home-search-input" placeholder="Search recipes..." name="q">
             <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit">Search</button>
+                <button class="btn btn-outline-secondary home-search-btn" type="submit">Search</button>
             </div>
         </div>
     </form>  
 
-    <div class="row">
+    <div class="row home-recipe-list">
         {% for recipe in object_list %}
         <div class="col-md-4 mb-4">
-            <div class="card">
+            <div class="card home-recipe-card">
                 {% if recipe.photo %}
-                    <img src="{{ recipe.photo.url }}" class="card-img-top" alt="{{ recipe.name }}">
+                    <img src="{{ recipe.photo.url }}" class="card-img-top home-recipe-img" alt="{{ recipe.name }}">
                 {% endif %}
                 <div class="card-body">
-                    <h5 class="card-title">{{ recipe.name }}</h5>
-                    <p class="card-text"><strong>Author:</strong> {{ recipe.author.profile.full_name }}</p>
-                    <p class="card-text">{{ recipe.description }}</p>
-                    <p class="card-text"><strong>Category:</strong> {{ recipe.category }}</p>
-                    <p class="card-text"><strong>Instructions:</strong> {{ recipe.instructions }}</p>
-                    <p class="card-text"><strong>Ingredients:</strong></p>
-                    <ul>
-                        {% for ingredient in recipe.ingredients.all %}
-                            <li>{{ ingredient.name }}</li>
+                    <h5 class="card-title home-recipe-title">{{ recipe.name }}</h5>
+                    <p class="card-text home-recipe-author"><strong>Author:</strong> {{ recipe.author.profile.full_name }}</p>
+                    <p class="card-text home-recipe-description">{{ recipe.description }}</p>
+                    <p class="card-text home-recipe-category"><strong>Category:</strong> {{ recipe.category }}</p>
+                    <p class="card-text home-recipe-instructions"><strong>Instructions:</strong> {{ recipe.instructions }}</p>
+                    <p class="card-text home-recipe-ingredients"><strong>Ingredients:</strong></p>
+                    <ul class="home-recipe-ingredient-list">
+                        {% for ingredient in recipe.ingredients %}
+                            <li>{{ ingredient }}</li>
                         {% endfor %}
                     </ul>
                     {% if user.is_authenticated %}
-                        <form action="{% url 'common:like-recipe' pk=recipe.pk %}" method="post" class="d-inline">
+                        <form action="{% url 'common:like-recipe' pk=recipe.pk %}" method="post" class="d-inline home-like-form">
                             {% csrf_token %}
-                            <button type="submit" class="like-btn">
+                            <button type="submit" class="like-btn home-like-btn">
                                 {% if user in recipe.likes.all %}
                                     <img src="{% static 'images/heart_full.png' %}" alt="Liked">
                                 {% else %}
@@ -45,12 +45,12 @@
                         </form>
                     {% endif %}
                 </div>
-                <div class="card-footer">
-                    <p class="likes">{{ recipe.like_count }} likes</p>
+                <div class="card-footer home-recipe-footer">
+                    <p class="likes home-like-count">{{ recipe.like_count }} likes</p>
                     {% if recipe.liked %}
-                        <p>You liked this recipe!</p>
+                        <p class="home-liked-msg">You liked this recipe!</p>
                     {% else %}
-                        <p>You haven't liked this recipe yet.</p>
+                        <p class="home-unliked-msg">You haven't liked this recipe yet.</p>
                     {% endif %}
                 </div>
             </div>
@@ -60,16 +60,16 @@
 </div>
 
 {% if is_paginated %}
-    <div class="container">
-        <div class="pagination justify-content-center">
+    <div class="container home-pagination-container">
+        <div class="pagination justify-content-center home-pagination">
             {% if page_obj.has_previous %}
-                <a href="?page=1" class="page-link">&laquo; First</a>
-                <a href="?page={{ page_obj.previous_page_number }}" class="page-link">Previous</a>
+                <a href="?page=1" class="page-link home-page-link">&laquo; First</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="page-link home-page-link">Previous</a>
             {% endif %}
-            <span class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+            <span class="page-link home-page-number">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}" class="page-link">Next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">Last &raquo;</a>
+                <a href="?page={{ page_obj.next_page_number }}" class="page-link home-page-link">Next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link home-page-link">Last &raquo;</a>
             {% endif %}
         </div>
     </div>

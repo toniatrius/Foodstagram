@@ -6,18 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FoodStagram</title>
     
+    <!-- Link to the main styles.css file -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{% static 'images/fork_knife_logo.ico' %}">
 </head>
 <body>
 
-<nav>
+<nav class="nav-menu">
     <ul>
-        <li><a href="{% url 'common:index' %}">Home</a></li> <!-- Link to RecipeListView -->
+        <li><a href="{% url 'common:index' %}">F🥑🥑DSTAGRAM HOME</a></li>
         {% if user.is_authenticated %}
             <li><a href="{% url 'recipe-create' %}">Add Recipe</a></li>
-            <li><a href="{% url 'recipe-list' user.pk %}">Recipes</a></li> <!-- Link to all recipes -->
+            <li><a href="{% url 'recipe-list' user.pk %}">Recipes</a></li>
+            <li><a href="{% url 'recipe-liked-list' user.pk %}">Liked</a></li>
             <li><a href="{% url 'profile' user.pk %}">Profile</a></li>
             <li><a href="{% url 'signout' %}">Logout</a></li>
         {% else %}
@@ -27,13 +30,12 @@
     </ul>
 </nav>
 
-
-<main>
+<main class="main-block">
     {% block content %}
     {% endblock %}
 </main>
 
-<footer>
+<footer class="page-footer">
     <p>&copy; 2024 FoodStagram</p>
 </footer>
 

@@ -1,40 +1,59 @@
+/* Resetting default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base font and background color */
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    background-color: #f5f5f5;
 }
 
-nav ul {
+/* Navigation Menu */
+.nav-menu {
+    background-color: #333;
+    padding: 1.1em 0;
+}
+
+/* Navigation Menu List Items */
+.nav-menu ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
-    background-color: #333;
-    overflow: hidden;
+    text-align: left;
 }
 
-nav ul li {
-    float: left;
+/* Navigation Menu List Item Links */
+.nav-menu ul li {
+    display: inline;
+    margin: 0 1.1em;
 }
 
-nav ul li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
+.nav-menu ul li a {
+    color: #fff;
     text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 1.3em;
 }
 
-nav ul li a:hover {
-    background-color: #111;
+.nav-menu ul li a:hover {
+    color: #ffc107;
 }
 
-footer {
+.main-block {
+    /*background-color: #495e53;*/
+    padding: 20px;
+    background-size: cover;
+    background-position: center;
+    background-image: url('../images/estudio-bloom-NYqCYYqymlM-unsplash.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Footer */
+.page-footer {
     background-color: #333;
-    color: white;
+    color: #fff;
     text-align: center;
-    padding: 10px;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+    padding: 1.1em 0;
 }

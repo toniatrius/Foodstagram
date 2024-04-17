@@ -12,6 +12,7 @@ class Recipe(models.Model):
     MAX_LEN_INSTRUCTIONS = 2000
     MAX_LEN_CATEGORY = 100
     MAX_LEN_INGREDIENT = 200
+    MAX_LEN_IMAGE_URL = 200
 
     name = models.CharField(
         max_length=MAX_LEN_NAME,
@@ -39,6 +40,7 @@ class Recipe(models.Model):
         upload_to='recipe_photos/',
         blank=True,
         null=True,
+        max_length=MAX_LEN_IMAGE_URL
     )
 
     category = models.CharField(

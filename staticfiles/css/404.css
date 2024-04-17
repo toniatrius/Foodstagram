@@ -1,13 +1,69 @@
-body {
-    background-color: #f2f2f2;
-    font-family: Arial, sans-serif;
+/* 404.css */
+
+/* Styles for the 404 error page */
+.error-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #efcccc;
+}
+
+.error-content {
     text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 90%;
 }
 
-h1 {
-    margin-top: 100px;
+.error-heading-404 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 10px;
 }
 
-p {
+.error-message-404 {
+    font-size: 1.2rem;
+    color: #666;
     margin-bottom: 20px;
+}
+
+.suggestions {
+    margin-top: 20px;
+}
+
+.suggestions p {
+    font-size: 1rem;
+    color: #888;
+}
+
+.suggestions ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+}
+
+.suggestions li {
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .error-content {
+        padding: 10px;
+    }
+
+    .error-heading-404 {
+        font-size: 2rem;
+    }
+
+    .error-message-404 {
+        font-size: 1rem;
+    }
+
+    .suggestions p {
+        font-size: 0.9rem;
+    }
 }

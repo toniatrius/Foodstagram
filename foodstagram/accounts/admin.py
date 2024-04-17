@@ -32,3 +32,20 @@ class FoodstagramUserAdmin(UserAdmin):
             },
         ),
     )
+
+    def get_fieldsets(self, request, obj=None):
+        if not obj:  # For adding new user
+            return self.add_fieldsets
+        if request.user.is_superuser:  # Only superusers can modify is_superuser field
+            return (
+                (None, {'fields': ('email', 'password')}),
+                ('Personal info', {'fields': ()}),
+                ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+                ('Important dates', {'fields': ('last_login',)}),
+            )
+        return super().get_fieldsets(request, obj)
+
+    def get_readonly_fields(self, request, obj=None):
+        if not request.user.is_superuser:
+            return self.readonly_fields + ('is_superuser',)
+        return self.readonly_fields

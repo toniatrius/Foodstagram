@@ -1,89 +1,174 @@
-.container {
+.home-container {
+    width: 80%;
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-}
-
-.form-control {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    background-color: rgba(28, 28, 28, 0.53);
+    border-radius: 20px;
 }
 
-.input-group-append button {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-}
-
-.input-group-append button:hover {
-    background-color: #2980b9;
-}
-
-.card {
-    background-color: #f9f9f9;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
+.home-recipe-card {
+    background-color: #ffe5e5;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+    min-height: 70vh;
 }
 
-.card h5 {
-    margin-bottom: 10px;
+.home-recipe-card:hover {
+    transform: translateY(-5px);
 }
 
-.card p {
-    margin-bottom: 10px;
-}
-
-.card img {
+.home-recipe-card img {
+    margin-top: 10px;
     max-width: 100%;
+    max-height: 200px;
+    width: auto;
     height: auto;
-    margin-bottom: 10px;
+    object-fit: cover;
 }
 
-/* Custom CSS styles for like button */
-.btn-like {
-    background-color: transparent;
-    border: none;
-    color: #007bff; /* Default color for unliked button */
-}
-
-.btn-like.liked {
-    color: red; /* Color for liked button */
-}
-
-/* Custom CSS styles for like count */
-.like-count {
-    margin-left: 5px; /* Adjust margin for spacing */
-    color: #007bff; /* Color for like count */
-}
-
-.pagination {
+.home-container .input-group {
+    width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
     margin-top: 20px;
 }
 
-.pagination a,
-.pagination span {
-    color: #333;
+.home-container .home-search-form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.home-container .home-search-input {
+    flex: 1;
     padding: 10px;
-    margin: 0 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-decoration: none;
+    border: 2px solid #4CAF50;
+    border-radius: 20px;
+    margin-right: 10px;
+    font-size: 16px;
+    outline: none;
+    max-width: 70%;
 }
 
-.pagination a:hover {
-    background-color: #f2f2f2;
+.home-container .home-search-input:hover {
+    border-color: #9745a0;
+    border-width: 5px;
 }
 
-.pagination .page-link {
+.home-container .home-search-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: 2px solid #2f8f32;
+    border-radius: 20px;
     cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
+
+.home-container .home-search-btn:hover {
+    background-color: #9745a0;
+    border-color: #4CAF50;
+    border-width: 5px;
+}
+
+.home-container .home-recipe-content {
+    text-align: center;
+}
+
+.home-container .home-recipe-title {
+    font-size: 2em;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.home-container .home-recipe-author,
+.home-container .home-recipe-description,
+.home-container .home-recipe-category,
+.home-container .home-recipe-instructions {
+    text-align: center;
+    color: #555;
+    margin-bottom: 5px;
+    font-size: 1.2em;
+    margin-top: 1.2em;
+}
+
+.home-container .home-recipe-ingredients {
+    text-align: center;
+    color: #555;
+    margin-bottom: 0.5em;
+    font-size: 1.2em;
+    margin-top: 1.3em;
+}
+
+.home-container .home-recipe-ingredient-list {
+    list-style-type: none;
+    padding-left: 0;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.home-container .home-like-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.home-container .home-like-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-container .home-like-btn img {
+    width: 2em;
+    height: auto;
+    transition: transform 0.3s;
+    align-self: center;
+}
+
+.home-container .home-like-btn:hover img {
+    transform: scale(1.3);
+}
+
+.home-container .home-like-count {
+    font-style: italic;
+    color: #3a3939;
+    margin-bottom: 0.7em;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+.home-container .home-liked-msg,
+.home-container .home-unliked-msg {
+    margin: 0.3em 0.3em;
+    color: #3a3939;
+    text-align: center;
+    font-size: 1.3em;
+}
+
